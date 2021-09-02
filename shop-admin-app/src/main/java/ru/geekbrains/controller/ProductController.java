@@ -34,10 +34,16 @@ public class ProductController {
     }
 
     @GetMapping
-    public String listPage(@RequestParam("page") Optional<Integer> page,
-                           @RequestParam("size") Optional<Integer> size,
-                           @RequestParam("sortField") Optional<String> sortField, Model model) {
+    public String listPage(
+            @RequestParam("categoryId") Optional<Long> categoryId,
+            @RequestParam("namePattern") Optional<String> namePattern,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size,
+            @RequestParam("sortField") Optional<String> sortField, Model model) {
+        model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("products", productService.findAll(
+                categoryId,
+                namePattern,
                 page.orElse(1) - 1,
                 size.orElse(5),
                 sortField.filter(fld -> !fld.isBlank()).orElse("id")));

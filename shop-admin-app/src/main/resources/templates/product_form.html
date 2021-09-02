@@ -47,8 +47,16 @@
             </form>
         </div>
 
-        <div class="col-12">
-            <img th:src="@{/picture/1}" height="150px" alt="Some image">
+        <div class="container-fluid mt-4">
+            <div class="card-columns" style="column-count: 5">
+                <div class="card" th:each="picId : ${product.pictures}">
+                    <form class="card-header" th:method="delete" th:action="@{/picture/{pictureId}(pictureId=${picId})}" >
+                        Picture<button class="float-right"><i class="fa fa-times"></i></button>
+                    </form>
+                    <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${picId})}"
+                         width="40%"/>
+                </div>
+            </div>
         </div>
     </div>
 </div>
