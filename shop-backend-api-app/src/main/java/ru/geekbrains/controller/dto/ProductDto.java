@@ -17,16 +17,22 @@ public class ProductDto {
 
     private List<Long> pictures;
 
+    private Long mainPictureId;
+
     public ProductDto() {
     }
 
-    public ProductDto(Long id, String name, String description, BigDecimal price, CategoryDto category, List<Long> pictures) {
+    public ProductDto(Long id, String name, String description, BigDecimal price,
+                      CategoryDto category, List<Long> pictures) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.category = category;
         this.pictures = pictures;
+        if (pictures != null && !pictures.isEmpty()) {
+            this.mainPictureId = pictures.get(0);
+        }
     }
 
     public Long getId() {
@@ -75,5 +81,13 @@ public class ProductDto {
 
     public void setPictures(List<Long> pictures) {
         this.pictures = pictures;
+    }
+
+    public Long getMainPictureId() {
+        return mainPictureId;
+    }
+
+    public void setMainPictureId(Long mainPictureId) {
+        this.mainPictureId = mainPictureId;
     }
 }
