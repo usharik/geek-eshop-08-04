@@ -17,11 +17,14 @@ export class CartPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cartUpdated();
+  }
+
+  cartUpdated() {
     this.cartService.findAll().subscribe(
       res => {
         this.content = res;
       }
     )
   }
-
 }

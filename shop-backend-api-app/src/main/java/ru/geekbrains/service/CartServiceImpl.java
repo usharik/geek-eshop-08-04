@@ -44,7 +44,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void removeProduct(ProductDto productDto, String color, String material) {
-        // TODO
+        LineItem lineItem = new LineItem(productDto, color, material);
+        lineItems.remove(lineItem);
     }
 
     @Override

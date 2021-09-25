@@ -17,6 +17,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from "@angula
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import {UnauthorizedInterceptor} from "./helpers/unauthorized-interceptor";
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     LoginPageComponent,
     RegisterPageComponent,
     OrderPageComponent,
-    PaginationComponent
+    PaginationComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
