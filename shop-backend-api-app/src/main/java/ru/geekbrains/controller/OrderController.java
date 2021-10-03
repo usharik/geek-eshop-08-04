@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.geekbrains.persist.model.Order;
+import ru.geekbrains.controller.dto.OrderDto;
 import ru.geekbrains.service.OrderService;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @GetMapping("/all")
-    public List<Order> findAll(Authentication auth) {
+    public List<OrderDto> findAll(Authentication auth) {
         return orderService.findOrdersByUsername(auth.getName());
     }
 }

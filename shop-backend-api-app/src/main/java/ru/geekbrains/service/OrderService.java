@@ -1,12 +1,12 @@
 package ru.geekbrains.service;
 
-import ru.geekbrains.persist.model.Order;
+import ru.geekbrains.controller.dto.OrderDto;
 
 import java.util.List;
 
 public interface OrderService {
 
-    List<Order> findOrdersByUsername(String username);
+    List<OrderDto> findOrdersByUsername(String username);
 
     void createOrder(String username);
 }

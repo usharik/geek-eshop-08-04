@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.controller.dto.OrderDto;
+import ru.geekbrains.controller.dto.OrderLineItemDto;
 import ru.geekbrains.persist.OrderRepository;
 import ru.geekbrains.persist.ProductRepository;
 import ru.geekbrains.persist.UserRepository;
@@ -41,8 +43,25 @@ public class OrderServiceImpl implements OrderService {
         this.productRepository = productRepository;
     }
 
-    public List<Order> findOrdersByUsername(String username) {
-        return orderRepository.findAllByUsername(username);
+    public List<OrderDto> findOrdersByUsername(String username) {
+        return orderRepository.findAllByUsername(username).stream()
+                .map(o -> new OrderDto(
+                        o.getId(),
+                        o.getOrderDate(),
+                        o.getStatus().name(),
+                        o.getUser().getUsername(),
+                        o.getOrderLineItems().stream()
+                                .map(li -> new OrderLineItemDto(
+                                        li.getId(),
+                                        li.getOrder().getId(),
+                                        li.getProduct().getId(),
+                                        li.getProduct().getName(),
+                                        li.getPrice(),
+                                        li.getQty(),
+                                        li.getColor(),
+                                        li.getMaterial()
+                                )).collect(Collectors.toList())
+                )).collect(Collectors.toList());
     }
 
     @Transactional
