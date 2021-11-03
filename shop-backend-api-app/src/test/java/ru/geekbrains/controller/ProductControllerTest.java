@@ -60,5 +60,8 @@ public class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content", hasSize(1)))
                 .andExpect(jsonPath("$.content[0].name", is(product.getName())));
+//                .andExpect(jsonPath("$.content[0].price", is(product.getPrice()
+//                        .stripTrailingZeros()
+//                        .toString())));
     }
 }
